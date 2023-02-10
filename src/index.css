@@ -2,7 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+@layer base {
+  #root {
+    height: 100vh;
+  }
+}
+
+@layer components {
+  .header {
+    @apply sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black;
+  }
+  .wrapper-search-input {
+    @apply flex h-8 md:h-10 md:ml-10 md:pl-5 border border-[#303030] rounded-l-3xl group-focus-within:border-blue-500 md:group-focus-within:ml-5 md:group-focus-within:pl-0;
+  }
+  .search-input {
+    @apply bg-transparent outline-none text-white pr-5 pl-5 md:pl-0 w-44 md:group-focus-within:pl-0 md:w-64 lg:w-[500px];
+  }
+  .btn-search-input {
+    @apply w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0  border-[#303030] rounded-r-3xl bg-white/[0.1];
+  }
+  .menu-icon-wrapper {
+    @apply flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10  rounded-full hover:bg-[#303030]/[0.6];
+  }
+  .load-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #fdba2c;
+  }
+  .bar {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 50%;
+    text-align: center;
+  }
+  .bar:nth-child(1) {
+    background-color: #da4733;
+    animation: loading 3s linear infinite;
+  }
+  .bar:nth-child(2) {
+    background-color: #3b78e7;
+    animation: loading 3s linear 1s infinite;
+  }
+  .bar:nth-child(3) {
+    background-color: #fdba2c;
+    animation: loading 3s linear 2s infinite;
+  }
+  @keyframes loading {
+    from {
+      left: 50%;
+      width: 0;
+      z-index: 100;
+    }
+    33.3333% {
+      left: 0;
+      width: 100%;
+      z-index: 10;
+    }
+    to {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  .custom-h {
+    height: auto !important;
+  }
+  @media screen and (min-width: 1024px) {
+    .custom-h {
+      height: 100vh !important;
+    }
+  }
+}
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -73,4 +149,4 @@ code {
   .custom-h {
     height: 100vh !important;
   }
-}
+} */
